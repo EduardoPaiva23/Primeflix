@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Fixa a raiz neste projeto (há outro lockfile numa pasta-pai).
+  turbopack: {
+    root: __dirname,
+  },
   images: {
     remotePatterns: [
       {

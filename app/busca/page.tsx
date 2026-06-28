@@ -8,7 +8,14 @@ export default async function BuscaPage({
 }) {
   const { q } = await searchParams;
   const query = q?.trim() ?? "";
-  const movies = query ? await searchMovies(query) : [];
+  let movies: Awaited<ReturnType<typeof searchMovies>> = [];
+  if (query) {
+    try {
+      movies = await searchMovies(query);
+    } catch (error) {
+      console.error("Falha ao buscar filmes:", error);
+    }
+  }
 
   return (
     <section className="space-y-6">
